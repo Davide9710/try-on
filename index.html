@@ -3,6 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try-On</title>
+</head>
+<body>
+    <input type="file" id="backgroundImage" accept="image/*">
+    <input type="file" id="garmentImage" accept="image/*">
+    <button id="runModelBtn">Run Model</button>
+    <pre id="result"></pre>
+
+    <!-- Include Gradio client library as a module -->
+    <script type="module">
+        import { client } from 'https://cdn.jsdelivr.net/npm/@gradio/client@1.2.1/dist/index.min.js';
+
+        window.gr = { Client: client };  // Making the client available globally for your index.js
+
+        document.addEventListener('DOMContentLoaded', () => {
+            async function runModel() {
+                try {
+                    const backgroundInput = document.getElementById('backgroundImage');
+                    const garmentInput = document.getElementById('garmentImage');
+                    
+                    if (!backgroundInput.files[0] || !garmentInput.files[0]) {
+                        alert("Please upload both images.");
+                        return;
+                    }
+
+                    const backgroundImage = backgroundInput.files[0];
+                    const garmentImage = garmentInput.files[0];
+                    
+                    const app = await gr.Client("yisol/IDM-VTON");
+                    const result = await app.predict("/tryon", [		
+                        {"background": backgroundImage, "layers":[], "composite":null},
+                        garmentImage,
+                        "Hello!!",
+                        true,
+                        true,
+                        20,
+                        3
+                    ]);
+                    
+                    console.log(result);
+                    document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+                } catch (error) {
+                    console.error("Error:", error);
+                    document.getElementById('result').innerText = "An error occurred. Check the console for details.";
+                }
+            }
+
+            const runModelBtn = document.getElementById('runModelBtn');
+            runModelBtn.addEventListener('click', runModel);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hugging Face Model Connection</title>
    
 </head>
@@ -25,4 +87,4 @@
     <script type="module" src="index.js"></script>
 
 </body>
-</html>
+</html> -->
