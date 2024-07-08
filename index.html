@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hugging Face Model Connection</title>
-    <script src="https://cdn.jsdelivr.net/npm/@gradio/client@1.2.1/dist/index.js"></script>
-    <script src="index.js" type="module"></script>
+   
 </head>
 <body>
-    <h1>Hugging Face Model Connection2</h1>
+    <h1>Hugging Face Model Connection</h1>
     <div>
         <label for="backgroundImage">Background Image:</label>
         <input type="file" id="backgroundImage" accept="image/*">
@@ -19,5 +18,11 @@
     </div>
     <button id="runModelBtn">Run Model</button>
     <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@gradio/client@1.2.1/dist/index.min.js"></script>
+    <script src="index.js"></script>
+    
+    <script type="module" src="index.js"></script>
+
 </body>
 </html>

@@ -1,5 +1,8 @@
-async function runModel() {
-    try {
+ import { client } from 'https://cdn.jsdelivr.net/npm/@gradio/client@1.2.1/dist/index.min.js';
+
+
+ async function runModel() {
+     try {
         const backgroundInput = document.getElementById('backgroundImage');
         const garmentInput = document.getElementById('garmentImage');
         
@@ -11,7 +14,7 @@ async function runModel() {
         const backgroundImage = backgroundInput.files[0];
         const garmentImage = garmentInput.files[0];
         
-        const app = await gradio.client("yisol/IDM-VTON");
+        const app = await gr.Client("yisol/IDM-VTON");
         const result = await app.predict("/tryon", [		
             {"background": backgroundImage, "layers":[], "composite":null},
             garmentImage,
@@ -34,3 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const runModelBtn = document.getElementById('runModelBtn');
     runModelBtn.addEventListener('click', runModel);
 });
+
