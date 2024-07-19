@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await app.predict("/tryon", [
                 {"background": backgroundImage, "layers":[], "composite":null},
                 garmentImage,
-                "Hello!!",
+                "Trousers",
                 true,
                 true,
                 20,
