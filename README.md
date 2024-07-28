@@ -37,7 +37,7 @@
 
 ## Documentation
 
-For more detailed information, please refer to the [project documentation](path/to/documentation.pdf).
+For more detailed information, please refer to the [project documentation](Virtual Try On(final).pdf).
 
 ---
 
